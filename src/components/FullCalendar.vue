@@ -11,11 +11,25 @@
         :active-view="ACTIVE_VIEW"
         :disable-views="DISABLED_VIEWS"
         locale="fr"
-    />
+        today-button
+    >
+        <template #today-button>
+            <span class="today-button">
+                Aujourd'hui
+            </span>
+        </template>
+    </VueCal>
 </template>
 
 <style scoped>
     .full-calendar {
         height: 500px;
+    }
+
+    .today-button {
+        padding: 4px;
+        border: solid 1px;
+        border-radius: 8px;
+        color: #42b983;
     }
 </style>
