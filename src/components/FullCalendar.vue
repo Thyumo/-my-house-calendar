@@ -4,7 +4,9 @@
 </script>
 
 <template>
-    <VueCal class="full-calendar" />
+    <VueCal
+        class="full-calendar vuecal--green-theme"
+    />
 </template>
 
 <style scoped>
