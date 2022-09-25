@@ -12,12 +12,17 @@
         :disable-views="DISABLED_VIEWS"
         :editable-events="EVENT_OPTIONS"
         locale="fr"
+        :time="false"
         today-button
     >
         <template #today-button>
             <span class="today-button">
                 Aujourd'hui
             </span>
+        </template>
+
+        <template #no-event>
+            <span></span>
         </template>
     </VueCal>
 </template>
