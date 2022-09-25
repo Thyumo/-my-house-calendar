@@ -2,7 +2,7 @@
     import VueCal from "vue-cal";
     import "vue-cal/dist/vuecal.css";
 
-    import { ACTIVE_VIEW, DISABLED_VIEWS } from "./config";
+    import { ACTIVE_VIEW, DISABLED_VIEWS, EVENT_OPTIONS } from "./config";
 </script>
 
 <template>
@@ -10,6 +10,7 @@
         class="full-calendar vuecal--green-theme"
         :active-view="ACTIVE_VIEW"
         :disable-views="DISABLED_VIEWS"
+        :editable-events="EVENT_OPTIONS"
         locale="fr"
         today-button
     >
