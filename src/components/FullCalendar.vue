@@ -18,11 +18,6 @@
     function setCurrentView(event: { view: EnabledView }) {
         currentView.value = event.view;
     }
-
-    defineExpose({
-        createFullDayEvent,
-        setCurrentView
-    });
 </script>
 
 <template>
