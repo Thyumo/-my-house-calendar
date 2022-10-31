@@ -4,16 +4,24 @@
     import VueCal from "vue-cal";
     import "vue-cal/dist/vuecal.css";
 
-    import { ACTIVE_VIEW, DISABLED_VIEWS, EVENT_OPTIONS } from "./config";
+    import { ACTIVE_VIEW, DISABLED_VIEWS, EnabledView, EVENT_OPTIONS } from "./config";
 
     const vueCal = ref<InstanceType<typeof VueCal | null>>(null);
+    const currentView = ref<EnabledView>(ACTIVE_VIEW);
 
     function createFullDayEvent(event: Date) {
-        vueCal.value.createEvent(event, 0, { allDay: true, title: "Réservation", class: "day-event", content: "Réservé par: " })
+        if (currentView.value !== "week") { return; }
+
+        vueCal.value.createEvent(event, 0, { allDay: true, title: "Réservation par: ", class: "day-event" })
     };
 
+    function setCurrentView(event: { view: EnabledView }) {
+        currentView.value = event.view;
+    }
+
     defineExpose({
-        createFullDayEvent
+        createFullDayEvent,
+        setCurrentView
     });
 </script>
 
@@ -29,6 +37,7 @@
         :time="false"
         today-button
         @cell-dblclick="createFullDayEvent($event)"
+        @view-change="setCurrentView($event)"
     >
         <template #today-button>
             <span class="today-button">

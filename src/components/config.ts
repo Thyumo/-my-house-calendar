@@ -8,8 +8,14 @@ const EVENT_OPTIONS = {
     create: true
 }
 
+type EnabledView = "year" | "month" | "week";
+
 export {
     ACTIVE_VIEW,
     DISABLED_VIEWS,
-    EVENT_OPTIONS
+    EVENT_OPTIONS,
 };
+
+export type {
+    EnabledView
+}
