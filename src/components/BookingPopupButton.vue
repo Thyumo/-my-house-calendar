@@ -1,0 +1,22 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+    <button class="popup-button">
+        Réserver
+    </button>
+</template>
+
+<style scoped>
+    .popup-button {
+        background-color: #e4f5ef;
+        color: #42b983;
+        font-size: 24px;
+        outline: none;
+    }
+
+    .popup-button:hover {
+        border-color: #42b983;
+    }
+</style>
