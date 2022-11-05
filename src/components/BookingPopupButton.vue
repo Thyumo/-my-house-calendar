@@ -12,6 +12,7 @@
     .popup-button {
         background-color: #e4f5ef;
         color: #42b983;
+        font-weight: 600;
         font-size: 24px;
         outline: none;
     }
