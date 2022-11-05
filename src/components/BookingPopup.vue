@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { toRef } from "vue";
 
-    import RegularButton from "./RegularButton.vue";
+    import RegularButton from "../baseComponents/RegularButton.vue";
 
     import { usePopup } from "../composables/popup";
 
@@ -12,7 +12,7 @@
 </script>
 
 <template>
-    <Teleport to="body">
+    <Teleport to=".homepage">
         <div v-if="opened" class="modal">
             <div class="title">Réserver la maison</div>
 
@@ -35,11 +35,9 @@
 <style scoped>
     .modal {
         position: fixed;
-        z-index: 999;
         top: 20%;
-        left: 50%;
-        width: 300px;
-        margin-left: -150px;
+        z-index: 999;
+        width: 600px;
         padding: 30px;
         background-color: white;
         border-radius: 8px;
