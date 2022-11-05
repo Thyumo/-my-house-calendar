@@ -1,5 +1,8 @@
 <script setup lang="ts">
     import { ref, toRef, watch } from "vue";
+
+    import RegularButton from "./RegularButton.vue";
+
     import { usePopup } from "../composables/popup";
 
     const props = defineProps({ isOpened: Boolean });
@@ -11,8 +14,20 @@
 <template>
     <Teleport to="body">
         <div v-if="opened" class="modal">
-            <p>Hello from the modal!</p>
-            <button @click="close()">Close</button>
+            <div class="title">Réserver la maison</div>
+
+            <div class="footer">
+                <RegularButton
+                    text="Annuler"
+                    type="secondary"
+                    @click="close()"
+                />
+
+                <RegularButton
+                    text="Réserver"
+                    type="main"
+                    @click="close()"/>
+            </div>
         </div>
     </Teleport>
 </template>
@@ -29,5 +44,16 @@
         background-color: white;
         border-radius: 8px;
         box-shadow: 0 4px 16px #00000026;
+    }
+
+    .title {
+        margin-bottom: 16px;
+
+        font-size: 24px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: space-between;
     }
 </style>
