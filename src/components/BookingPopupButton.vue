@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+    defineEmits(["open-booking-popup"])
 </script>
 
 <template>
-    <button class="popup-button">
+    <button class="popup-button" @click="$emit('open-booking-popup')">
         Réserver
     </button>
 </template>
