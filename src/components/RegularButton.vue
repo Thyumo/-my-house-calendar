@@ -4,7 +4,7 @@
         type: "main" | "secondary";
     }
 
-    const props = defineProps<Props>();
+    defineProps<Props>();
     defineEmits(["click"]);
 </script>
 
