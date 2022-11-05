@@ -49,6 +49,7 @@
 <style scoped>
     .full-calendar {
         height: 500px;
+        width: 100%;
     }
 
     .today-button {

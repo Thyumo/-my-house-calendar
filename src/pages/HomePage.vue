@@ -35,6 +35,7 @@
         display: flex;
         flex-direction: column;
         gap: 32px;
+        align-items: center;
     }
 
     .header {

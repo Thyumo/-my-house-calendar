@@ -10,6 +10,7 @@
 
 <style scoped>
     .popup-button {
+        width: 100%;
         background-color: #e4f5ef;
         color: #42b983;
         font-weight: 600;
