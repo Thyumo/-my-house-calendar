@@ -14,6 +14,7 @@
 
     function updateDate(date: string | undefined) {
         if (validateDate(date)) {
+            isDateInvalid.value = false;
             emits("update:date", date);
         } else {
             isDateInvalid.value = true
