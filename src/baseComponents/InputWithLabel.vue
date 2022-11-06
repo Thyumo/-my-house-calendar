@@ -14,7 +14,12 @@
             {{ label }}
         </label>
 
-        <input name="inputWithLabel" v-model="value" @change="$emit('update:value', value)" />
+        <input
+            class="text-input"
+            name="inputWithLabel"
+            v-model="value"
+            @change="$emit('update:value', value)"
+        />
     </div>
 </template>
 
@@ -22,6 +27,18 @@
     .input-with-label {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 8px;
+        flex: 1;
+    }
+
+    .text-input {
+        border: 0.75px solid;
+        border-radius: 4px;
+    }
+
+    .text-input:focus {
+        outline: none;
+        border: 1px solid #42b983;
     }
 </style>
