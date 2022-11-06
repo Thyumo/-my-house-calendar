@@ -10,6 +10,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "moment": "^2.29.4",
     "vue": "^3.2.37",
     "vue-cal": "^4.8.0"
   },
