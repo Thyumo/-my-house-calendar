@@ -2,6 +2,7 @@
     import { toRef } from "vue";
 
     import RegularButton from "../baseComponents/RegularButton.vue";
+    import BookingPopupForm from "./BookingPopupForm.vue";
 
     import { usePopup } from "../composables/popup";
 
@@ -15,6 +16,8 @@
     <Teleport to=".homepage">
         <div v-if="opened" class="modal">
             <div class="title">Réserver la maison</div>
+
+            <BookingPopupForm class="form" />
 
             <div class="footer">
                 <RegularButton
@@ -45,9 +48,13 @@
     }
 
     .title {
-        margin-bottom: 16px;
+        margin-bottom: 36px;
 
         font-size: 24px;
+    }
+
+    .form {
+        margin-bottom: 24px;
     }
 
     .footer {
