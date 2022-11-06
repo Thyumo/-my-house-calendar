@@ -1,27 +1,27 @@
 <script setup lang="ts">
-    import { ref } from "vue";
-
     import DateInputWithLabel from "../baseComponents/DateInputWithLabel.vue";
     import InputWithLabel from '../baseComponents/InputWithLabel.vue';
 
-    const formData = ref({
-        name: "",
-        surname: ""
-    });
+    import type { BookingInputData } from "../types/BookingInputData";
+
+    defineProps<{ formData: BookingInputData}>()
+    defineEmits<{
+        (e: "update:formData", value: Partial<BookingInputData>): void
+    }>();
 </script>
 
 <template>
     <div class="booking-popup-form">
         <div class="form-section">
-            <InputWithLabel label="Nom" :value="formData.name" @update:value="formData.name = $event" />
+            <InputWithLabel label="Nom" :value="formData.name" @update:value="$emit('update:formData', { name: $event })" />
         
-            <InputWithLabel label="Prénom" :value="formData.surname" @update:value="formData.surname = $event" />
+            <InputWithLabel label="Prénom" :value="formData.surname" @update:value="$emit('update:formData', { surname: $event })" />
         </div>
 
         <div class="form-section">
-            <DateInputWithLabel label="Arrivée (JJ/MM/AAAA)" />
+            <DateInputWithLabel label="Arrivée (JJ/MM/AAAA)" @update:date="$emit('update:formData', { startDate: $event })" />
 
-            <DateInputWithLabel label="Départ (JJ/MM/AAAA)" />
+            <DateInputWithLabel label="Départ (JJ/MM/AAAA)" @update:date="$emit('update:formData', { endDate: $event })" />
         </div>
     </div>
 </template>

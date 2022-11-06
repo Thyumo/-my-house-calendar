@@ -1,15 +1,28 @@
 <script setup lang="ts">
-    import { toRef } from "vue";
+    import { ref, toRef } from "vue";
 
     import RegularButton from "../baseComponents/RegularButton.vue";
     import BookingPopupForm from "./BookingPopupForm.vue";
 
     import { usePopup } from "../composables/popup";
 
+    import type { BookingInputData } from "../types/BookingInputData";
+
     const props = defineProps({ isOpened: Boolean });
     const emits = defineEmits(["update:isOpened"]);
 
     const { opened, close } = usePopup({ isOpened: toRef(props, "isOpened"), emitter: emits });
+
+    const bookingCreationData = ref<BookingInputData>({
+        name: "",
+        surname: "",
+        startDate: "",
+        endDate: ""
+    })
+
+    function handleUpdate(update: Partial<BookingInputData>) {
+        bookingCreationData.value = { ...bookingCreationData.value, ...update };
+    };
 </script>
 
 <template>
@@ -17,7 +30,7 @@
         <div v-if="opened" class="modal">
             <div class="title">Réserver la maison</div>
 
-            <BookingPopupForm class="form" />
+            <BookingPopupForm class="form" :formData="bookingCreationData" @update:formData="handleUpdate($event)" />
 
             <div class="footer">
                 <RegularButton
