@@ -18,6 +18,7 @@
     .main {
         background-color: #42b983;
         color: #fff;
+        outline: none;
     }
 
     .main:hover {
