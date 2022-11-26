@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import { ref } from "vue";
     import { useQuery } from "@vue/apollo-composable";
-    import gql from "graphql-tag";
     // @ts-expect-error
     import VueCal from "vue-cal";
     import "vue-cal/dist/vuecal.css";
@@ -10,10 +9,12 @@
 
     import { getBookingsQuery } from "../realm/queries";
 
+    import type { Booking } from "../types";
+
     const vueCal = ref<InstanceType<typeof VueCal | null>>(null);
     const currentView = ref<EnabledView>(ACTIVE_VIEW);
 
-    const { result } = useQuery(getBookingsQuery);
+    const { result } = useQuery<Booking[]>(getBookingsQuery);
 
     function createFullDayEvent(event: Date) {
         if (currentView.value !== "week") { return; }

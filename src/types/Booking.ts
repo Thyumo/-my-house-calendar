@@ -1,4 +1,5 @@
-export type BookingInputData = {
+export type Booking = {
+    _id: string;
     firstName: string;
     lastName: string;
     startDate: string;
