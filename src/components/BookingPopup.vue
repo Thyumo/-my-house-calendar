@@ -1,12 +1,14 @@
 <script setup lang="ts">
     import { ref, toRef } from "vue";
+    import { useMutation } from "@vue/apollo-composable";
 
     import RegularButton from "../baseComponents/RegularButton.vue";
     import BookingPopupForm from "./BookingPopupForm.vue";
 
     import { usePopup } from "../composables/popup";
+    import { createBookingMutation } from "../realm/mutations";
 
-    import type { BookingInputData } from "../types/BookingInputData";
+    import type { BookingInputData } from "../types";
 
     const props = defineProps({ isOpened: Boolean });
     const emits = defineEmits(["update:isOpened"]);
@@ -23,6 +25,17 @@
     function handleUpdate(update: Partial<BookingInputData>) {
         bookingCreationData.value = { ...bookingCreationData.value, ...update };
     };
+
+    const { mutate: createBooking } = useMutation(createBookingMutation);
+
+    async function handleBookingCreation() {
+        const bookingInput = {
+            ...bookingCreationData.value,
+            endDate: new Date(bookingCreationData.value.endDate),
+            startDate: new Date(bookingCreationData.value.startDate)
+        }
+        await createBooking({ data: bookingInput });
+    }
 </script>
 
 <template>
@@ -42,7 +55,7 @@
                 <RegularButton
                     text="Réserver"
                     type="main"
-                    @click="close()"/>
+                    @click="handleBookingCreation()"/>
             </div>
         </div>
     </Teleport>
