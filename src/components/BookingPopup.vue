@@ -14,8 +14,8 @@
     const { opened, close } = usePopup({ isOpened: toRef(props, "isOpened"), emitter: emits });
 
     const bookingCreationData = ref<BookingInputData>({
-        name: "",
-        surname: "",
+        firstName: "",
+        lastName: "",
         startDate: "",
         endDate: ""
     })
