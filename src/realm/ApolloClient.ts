@@ -16,7 +16,6 @@ const httpLink = createHttpLink({
 // Authentication
 async function getValidAccessToken() {
     // Guarantee that there's a logged in user with a valid access token
-    console.log(appRealm)
     if (! appRealm.currentUser) {
       // If no user is logged in, log in an anonymous user. The logged in user will have a valid
       // access token.
