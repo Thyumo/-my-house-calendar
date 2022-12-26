@@ -1,11 +1,11 @@
 <script setup lang="ts">
     interface Props {
         label: string;
-        value?: string;
+        text?: string;
     }
 
-    defineProps<Props>();
-    defineEmits(["update:value"]);
+    const props = defineProps<Props>();
+    defineEmits(["update:text"]);
 </script>
 
 <template>
@@ -17,8 +17,7 @@
         <input
             class="text-input"
             name="inputWithLabel"
-            v-model="value"
-            @change="$emit('update:value', value)"
+            v-model="props.text"
         />
     </div>
 </template>

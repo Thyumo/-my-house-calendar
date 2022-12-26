@@ -13,9 +13,9 @@
 <template>
     <div class="booking-popup-form">
         <div class="form-section">
-            <InputWithLabel label="Nom" :value="formData.lastName" @update:value="$emit('update:formData', { lastName: $event })" />
+            <InputWithLabel label="Nom" :text="formData.lastName" @update:text="$emit('update:formData', { lastName: $event })" />
         
-            <InputWithLabel label="Prénom" :value="formData.firstName" @update:value="$emit('update:formData', { firstName: $event })" />
+            <InputWithLabel label="Prénom" :text="formData.firstName" @update:text="$emit('update:formData', { firstName: $event })" />
         </div>
 
         <div class="form-section">
