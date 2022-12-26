@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "zsh deploy.sh"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
