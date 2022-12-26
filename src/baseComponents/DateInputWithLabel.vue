@@ -7,7 +7,7 @@
         date?: string;
     }
 
-    defineProps<Props>();
+    const props = defineProps<Props>();
     const emits = defineEmits(["update:date"]);
 
     const isDateInvalid = ref(false);
@@ -36,7 +36,7 @@
             class="date-input"
             :class="{ 'error': isDateInvalid }"
             name="inputWithLabel"
-            v-model="date"
+            v-model="props.date"
             @change="updateDate(date)"
         />
     </div>
