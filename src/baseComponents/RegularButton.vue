@@ -1,5 +1,6 @@
 <script setup lang="ts">
     interface Props {
+        disabled?: boolean;
         text: string;
         type: "main" | "secondary";
     }
@@ -9,7 +10,7 @@
 </script>
 
 <template>
-    <button :class="type" @click="$emit('click')">
+    <button :class="[type, { 'disabled': ! disabled }]" @click="$emit('click')">
         {{ text }}
     </button>
 </template>
@@ -33,5 +34,16 @@
 
     .secondary:hover {
         border-color: #42b983;
+    }
+
+    .disabled {
+        background-color: #eff4f7;
+        color: #90a4ae;
+        outline: none;
+    }
+
+    .disabled:hover {
+        cursor: default;
+        border-color: #eff4f7;
     }
 </style>
