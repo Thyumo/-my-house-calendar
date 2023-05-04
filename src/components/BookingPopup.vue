@@ -35,6 +35,7 @@
             startDate: new Date(bookingCreationData.value.startDate)
         }
         await createBooking({ data: bookingInput });
+        close()
     }
 </script>
 
