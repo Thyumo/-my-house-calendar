@@ -5,7 +5,8 @@
     import RegularButton from "../baseComponents/RegularButton.vue";
     import BookingPopupForm from "./BookingPopupForm.vue";
 
-    import { usePopup } from "../composables";
+
+    import { useFormValidation, usePopup } from "../composables";
     import { createBookingMutation } from "../realm/mutations";
 
     import type { BookingInputData } from "../types";
@@ -26,9 +27,12 @@
         bookingCreationData.value = { ...bookingCreationData.value, ...update };
     };
 
+    const { isFormValid } = useFormValidation(bookingCreationData);
     const { mutate: createBooking } = useMutation(createBookingMutation);
 
     async function handleBookingCreation() {
+        if (! isFormValid.value) { return; }
+
         const bookingInput = {
             ...bookingCreationData.value,
             endDate: new Date(bookingCreationData.value.endDate),
@@ -54,6 +58,7 @@
                 />
 
                 <RegularButton
+                    :disabled="isFormValid"
                     text="Réserver"
                     type="main"
                     @click="handleBookingCreation()"/>
