@@ -8,8 +8,10 @@
         date?: string;
     }
 
-    const props = defineProps<Props>();
+    const props = withDefaults(defineProps<Props>(), { date: "" });
     const emits = defineEmits(["update:date"]);
+
+    const internalDate = ref(props.date);
 
     const { isDateValid } = useValidation();
 
@@ -18,7 +20,7 @@
     function updateDate(date: string | undefined) {
         if (isDateValid(date)) {
             isDateInvalid.value = false;
-            emits("update:date", date);
+            emits("update:date", internalDate.value);
         } else {
             isDateInvalid.value = true
         }
@@ -35,8 +37,8 @@
             class="date-input"
             :class="{ 'error': isDateInvalid }"
             name="inputWithLabel"
-            v-model="props.date"
-            @change="updateDate(date)"
+            v-model="internalDate"
+            @change="updateDate(internalDate)"
         />
     </div>
 </template>
