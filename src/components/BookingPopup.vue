@@ -5,7 +5,7 @@
     import RegularButton from "../baseComponents/RegularButton.vue";
     import BookingPopupForm from "./BookingPopupForm.vue";
 
-    import { usePopup } from "../composables/popup";
+    import { usePopup } from "../composables";
     import { createBookingMutation } from "../realm/mutations";
 
     import type { BookingInputData } from "../types";
