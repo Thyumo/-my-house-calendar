@@ -14,7 +14,11 @@ export function useFormValidation(formData: Ref<BookingInputData>) {
     const isEndDateValid = computed(() => isDateValid(formData.value.endDate));
 
     const isFormValid = computed(() => {
-        return isFirstNameValid.value && isLastNameValid.value && isStartDateValid.value && isEndDateValid.value;
+        const isDataValid = isFirstNameValid.value && isLastNameValid.value && isStartDateValid.value && isEndDateValid.value
+        if (! isDataValid) { return false };
+    
+        const isBookingIntervalValid = (new Date(formData.value.startDate)).getTime() <= (new Date(formData.value.endDate)).getTime();
+        return isBookingIntervalValid;
     });
 
     return { isFormValid };
