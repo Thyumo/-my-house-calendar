@@ -1,4 +1,4 @@
-import { Ref, ref, toRefs, watch } from "vue";
+import { Ref, ref, watch } from "vue";
 
 export function usePopup(
     { isOpened, emitter }:
