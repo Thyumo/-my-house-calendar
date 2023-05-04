@@ -1,11 +1,17 @@
 <script setup lang="ts">
+    import { withDefaults, ref } from "vue";
+
     interface Props {
         label: string;
         text?: string;
     }
 
-    const props = defineProps<Props>();
-    defineEmits(["update:text"]);
+    const props = withDefaults(defineProps<Props>(), { text: "" });
+    const emits = defineEmits<{
+        (event: "update:text", value: string): void;
+    }>();
+
+    const internalText = ref(props.text);
 </script>
 
 <template>
@@ -17,7 +23,8 @@
         <input
             class="text-input"
             name="inputWithLabel"
-            v-model="props.text"
+            v-model="internalText"
+            @change="$emit('update:text', internalText)"
         />
     </div>
 </template>
