@@ -10,8 +10,8 @@
 
     import type { BookingInputData } from "../types";
 
-    const props = defineProps({ isOpened: Boolean });
-    const emits = defineEmits(["update:isOpened"]);
+    const props = defineProps<{ isOpened: boolean }>();
+    const emits = defineEmits<{ (event: "update:isOpened", value: boolean ): void; }>();
 
     const { opened, close } = usePopup({ isOpened: toRef(props, "isOpened"), emitter: emits });
 
