@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { ref } from "vue";
-    import moment from "moment"
+
+    import { useValidation } from "../composables";
 
     interface Props {
         label: string;
@@ -10,19 +11,17 @@
     const props = defineProps<Props>();
     const emits = defineEmits(["update:date"]);
 
+    const { isDateValid } = useValidation();
+
     const isDateInvalid = ref(false);
 
     function updateDate(date: string | undefined) {
-        if (validateDate(date)) {
+        if (isDateValid(date)) {
             isDateInvalid.value = false;
             emits("update:date", date);
         } else {
             isDateInvalid.value = true
         }
-    }
-
-    function validateDate(date: string | undefined) {
-        return moment(date, "DD/MM/YYYY").isValid();
     }
 </script>
 
