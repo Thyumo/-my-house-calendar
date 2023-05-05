@@ -1,12 +1,12 @@
 <script setup lang="ts">
-    import { ref } from "vue";
+    import { computed, ref } from "vue";
     import { useQuery } from "@vue/apollo-composable";
     // @ts-expect-error
     import VueCal from "vue-cal";
     import "vue-cal/dist/vuecal.css";
 
     import { ACTIVE_VIEW, DISABLED_VIEWS, EnabledView, EVENT_OPTIONS } from "./config";
-
+    import { useValidation } from "../composables";
     import { getBookingsQuery } from "../realm/queries";
 
     import type { Booking } from "../types";
@@ -14,7 +14,13 @@
     const vueCal = ref<InstanceType<typeof VueCal | null>>(null);
     const currentView = ref<EnabledView>(ACTIVE_VIEW);
 
-    const { result } = useQuery<Booking[]>(getBookingsQuery);
+    const { result } = useQuery<{ bookings: Booking[] }>(getBookingsQuery);
+    const { convertToEventFormat } = useValidation();
+    const events = computed(() => {
+        if (! result || ! result.value || ! result.value.bookings) { return []; }
+
+        return result.value.bookings.map(convertToEventFormat);
+    });
 
     function createFullDayEvent(event: Date) {
         if (currentView.value !== "week") { return; }
@@ -29,12 +35,14 @@
 
 <template>
     <VueCal
+        v-if="result && result.bookings"
         ref="vueCal"
         class="full-calendar vuecal--green-theme"
         :active-view="ACTIVE_VIEW"
         :disable-views="DISABLED_VIEWS"
         :drag-to-create-event="false"
         :editable-events="EVENT_OPTIONS"
+        :events="events"
         locale="fr"
         :time="false"
         today-button
